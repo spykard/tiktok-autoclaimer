@@ -63,8 +63,8 @@ driver.find_element_by_class_name('login-button-31D24').click()
 # Username Selection (Account has already been created when this page Loads)
 username_tiktok = config['Settings']['username_tiktok']
 element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'email')))
+element.clear()
 element.send_keys(username_tiktok)
 
+# Final Click
 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'login-button-31D24'))).click() 
-
-quit()
