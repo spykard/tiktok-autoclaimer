@@ -24,20 +24,27 @@ driver.get('https://www.tiktok.com/signup?lang=en')
 time.sleep(1)
 
 # Start the process of clicking on a series of Buttons on the Website
-element = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, ("//*[contains(text(), 'Twitter')]")))).click()
+element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, ("//*[contains(text(), 'Twitter')]")))).click()
 
 driver.refresh()  # Required
 
 driver.switch_to.window(driver.window_handles[1])  # Switch to 2nd Window
 print(f"Loading {driver.current_url}...")
 
-username_twitter = config['Settings']['login_mode']
+username_twitter = config['Settings']['username_twitter']
 element_popup_twitter = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'username_or_email')))
-element_popup_twitter.send_keys("some text")
+element_popup_twitter.send_keys(username_twitter)
 
-password_twitter = config['Settings']['login_mode']
+password_twitter = config['Settings']['password_twitter']
 element_popup_twitter = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'password')))
-element_popup_twitter.send_keys("some text")
+element_popup_twitter.send_keys(password_twitter)
+
+driver.find_element_by_id('allow').click()
+
+driver.switch_to.window(driver.window_handles[0])  # Switch back to 1st Window
+driver.find_element_by_xpath("//*[contains(text(), 'Twitter')]").click()
+
+
 
 quit()
 
