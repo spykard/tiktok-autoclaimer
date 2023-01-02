@@ -12,3 +12,4 @@ TikTok AutoClaim
 tiktok Auto-claim  
 TikTok Autoclaim Bot  
 2022  
+2023
